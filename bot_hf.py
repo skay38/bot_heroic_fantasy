@@ -116,7 +116,7 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member, chan : 
         await bot.say("combien de cases ?")
         nombre = int((await bot.wait_for_message(channel=chan)).content)
         for k in range(nombre):
-            await bot.say("Quel ligne ?")
+            await bot.say("Quelle ligne ?")
             i = int((await bot.wait_for_message(channel=chan)).content)-1
             await bot.say("Quelle colonne ?")
             j = int((await bot.wait_for_message(channel=chan)).content)-1
