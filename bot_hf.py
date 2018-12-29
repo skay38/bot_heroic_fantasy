@@ -93,8 +93,8 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member):
         tab_attente.append(' - '.join(x))
     affichage_grille='\n'.join(tab_attente)
     await bot.say(affichage)
-    await bot.send_message(espion1,affichage_grille)
-    await bot.send_message(espion2,affichage_grille)
+    await bot.send_message(espion1,'Voici la grille à faire deviner :\n'+affichage_grille)
+    await bot.send_message(espion2,'Voici la grille à faire deviner :\n'+affichage_grille)
     if a=='r':
         tot_r=9
         tot_b=8
