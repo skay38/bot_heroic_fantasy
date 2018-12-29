@@ -25,7 +25,7 @@ def code_names_init():
     noms=NOMS
     while len(game)<25:
         k=randint(0,len(noms)-1)
-        game.append(noms[k].lower())
+        game.append(noms[k])
         game=list(set(game))
     taille=0
     for x in game:
