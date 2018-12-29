@@ -114,12 +114,12 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member, chan : 
         else:
             await bot.say("Tour Bleu")
         await bot.say("combien de cases ?")
-        nombre = int((await bot.wait_for_message(channel=chan, author != bot.user)).content)
+        nombre = int((await bot.wait_for_message(channel=chan, author.roles[1] != "Bots")).content)
         for k in range(nombre):
             await bot.say("Quelle ligne ?")
-            i = int((await bot.wait_for_message(channel=chan, author != bot.user)).content)-1
+            i = int((await bot.wait_for_message(channel=chan, author.roles[1] != "Bots")).content)-1
             await bot.say("Quelle colonne ?")
-            j = int((await bot.wait_for_message(channel=chan, author != bot.user)).content)-1
+            j = int((await bot.wait_for_message(channel=chan, author.roles[1] != "Bots")).content)-1
             if grille[i][j]=='m':
                 game[i][j]='MORT'
                 await bot.say("La team a perdu !")
