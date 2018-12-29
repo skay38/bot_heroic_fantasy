@@ -84,7 +84,7 @@ def afficher(game):
         print(m)
 
 @bot.command()
-async def code_names(espion1 : discord.Member, espion2 : discord.Member):
+async def code_names(espion1 : discord.Member, espion2 : discord.Member, chan : discord.Channel):
     """Allow to play to Code Names"""
     game=code_names_init()
     a,grille=grille_jeu_init()
@@ -112,14 +112,14 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member):
         if tour ==1:
             await bot.say("Tour Rouge")
         else:
-            await bot.say("Tour Bleue")
+            await bot.say("Tour Bleu")
         await bot.say("combien de cases ?")
         nombre = int((await bot.wait_for_message(author=espion1)).content)
         for k in range(nombre):
             await bot.say("Quel ligne ?")
-            i = int((await bot.wait_for_message(author=espion1)).content)-1
-            await bot.say("Quel colonne ?")
-            j = int((await bot.wait_for_message(author=espion1)).content)-1
+            i = int((await bot.wait_for_message(channel=chan)).content)-1
+            await bot.say("Quelle colonne ?")
+            j = int((await bot.wait_for_message(channel=chan)).content)-1
             if grille[i][j]=='m':
                 game[i][j]='MORT'
                 await bot.say("La team a perdu !")
@@ -144,7 +144,7 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member):
                 break
             elif tot_b==0:
                 fin=1
-                await bot.say("Les bleues ont gagné !")
+                await bot.say("Les bleus ont gagné !")
                 break
             tab_attente=[]
             if k != nombre - 1 :
