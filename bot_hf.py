@@ -2,8 +2,6 @@ from random import randint
 import discord
 from discord.ext import commands
 
-TOKEN = 'NTI4Mjc4NDc4MTY5MTc4MTQ1.Dwf-dw.oZ-5Lo2M0tCG2ICHHGDdcmPKql4'
-
 description = '''Bot Python'''
 bot = commands.Bot(command_prefix='?', description=description)
 
