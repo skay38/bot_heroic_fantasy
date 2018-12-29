@@ -350,7 +350,7 @@ def liste_terr(lieu,li):
 
 coef=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.2,1,1,1,1,0.33,0.5,1,0.5,0.2,0.2,0.2,0.2,0.01,0.01,1,0.5,0.5,1,0.5,0.2,1,1,1,1,1,1,1,0.5,0.5,1,0.1,0.1,0.2,0.1,0.05,0.1,0.05,0.01]
 coef[33]=0.33
-def list_terr2(lieu,i,lieu2,test_3,desactiver):
+def list_terr2(lieu,i,lieu2,test_3):
     l1=liste(lieu)
     if lieu == lieu2:
         test_3[lieu] = i
@@ -373,7 +373,7 @@ def list_terr2(lieu,i,lieu2,test_3,desactiver):
     l=[]
     for x in faire:
         copie=copy.deepcopy(test_3)
-        l.append(list_terr2(x,test_3[x],lieu2,copie,desactiver))
+        l.append(list_terr2(x,test_3[x],lieu2,copie))
     if faire != []:
         for i in range(0,24):
             m=l[0][i]
@@ -394,7 +394,9 @@ test=[0]*24
 async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
     await bot.say(str(test))
-    h=plus_facile(list_terr2(int(i)-1,int(nb),int(i)-1,test,list_desactive.split(' ')))
+    desactiver = list_desactive.split(' ')
+    global desactiver
+    h=plus_facile(list_terr2(int(i)-1,int(nb),int(i)-1,test))
     message=""
     for k in h:
         a,b=k
