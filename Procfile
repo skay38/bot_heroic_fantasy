@@ -1,1 +1,1 @@
-web: python3 bot_hf.py
+worker: python3.6 bot_hf.py
