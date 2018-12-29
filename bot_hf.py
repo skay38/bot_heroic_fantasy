@@ -352,8 +352,8 @@ coef=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.2,1,1,1,1,0.33,0.5,1,0.5,0.2,0.2,0.2,0
 coef[33]=0.33
 
 def desactive(list_desactive):
-    desactiver = list_desactive.split(' ')
     global desactiver
+    desactiver = list_desactive.split(' ')
 
 def list_terr2(lieu,i,lieu2,test_3):
     l1=liste(lieu)
