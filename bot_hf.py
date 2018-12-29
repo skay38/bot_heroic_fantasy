@@ -1,9 +1,12 @@
 from random import randint
 import discord
 from discord.ext import commands
+import os
 
 description = '''Bot Python'''
 bot = commands.Bot(command_prefix='?', description=description)
+
+TOKEN = os.environ['TOKEN']
 
 @bot.event
 async def on_ready():
