@@ -394,10 +394,11 @@ def plus_facile(test_3):
             l.append((i+1,test_3[i]))
     return(l)
 
-test=[0]*24
 @bot.command()
 async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
+    global test
+    test=[0]*24
     await bot.say(str(test))
     desactive(list_desactive)
     h=plus_facile(list_terr2(int(i)-1,int(nb),int(i)-1,test))
