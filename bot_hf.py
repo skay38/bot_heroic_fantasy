@@ -393,6 +393,7 @@ def plus_facile(test_3):
 test=[0]*24
 @bot.command()
 async def productions(i,nb):
+    """Allow to know the best number of productions to do"""
     h=plus_facile(list_terr2(i-1,nb,i-1,test))
     message=""
     for k in h:
