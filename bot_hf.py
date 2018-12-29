@@ -27,6 +27,12 @@ def code_names_init():
         k=randint(0,len(noms)-1)
         game.append(noms[k])
         game=list(set(game))
+    taille=0
+    for x in game:
+        taille=max(taille,len(x))
+    for i in range(len(game)):
+        while len(game[i])<taille:
+            game[i]=game[i]+' '
     l=[]
     for i in range(5):
         l.append(game[i*5:5*(i+1)])
