@@ -16,9 +16,9 @@ async def on_ready():
     print('------')
 
 @bot.command(pass_context=True)
-async def hello():
+async def hello(ctx):
     """Says Hello World"""
-    await bot.say("Hellod")
+    await ctx.say("Hellod")
 
 def code_names_init():
     game=[]
