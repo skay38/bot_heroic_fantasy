@@ -350,8 +350,7 @@ def liste_terr(lieu,li):
 
 coef=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.2,1,1,1,1,0.33,0.5,1,0.5,0.2,0.2,0.2,0.2,0.01,0.01,1,0.5,0.5,1,0.5,0.2,1,1,1,1,1,1,1,0.5,0.5,1,0.1,0.1,0.2,0.1,0.05,0.1,0.05,0.01]
 coef[33]=0.33
-desactiver=["fer","plantes","livre","poule","zeppelin","navire de fret","corde"]
-def list_terr2(lieu,i,lieu2,test_3):
+def list_terr2(lieu,i,lieu2,test_3,desactiver):
     l1=liste(lieu)
     if lieu == lieu2:
         test_3[lieu] = i
@@ -392,9 +391,9 @@ def plus_facile(test_3):
 
 test=[0]*24
 @bot.command()
-async def productions(i,nb):
+async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
-    h=plus_facile(list_terr2(i-1,nb,i-1,test))
+    h=plus_facile(list_terr2(i-1,nb,i-1,test,list_desactive))
     message=""
     for k in h:
         a,b=k
