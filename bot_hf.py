@@ -81,6 +81,7 @@ def afficher(game):
 
 @bot.command()
 async def code_names(espion1 : discord.Member, espion2 : discord.Member):
+    """Allow to play to Code Names"""
     game=code_names_init()
     a,grille=grille_jeu_init()
     fin=0
