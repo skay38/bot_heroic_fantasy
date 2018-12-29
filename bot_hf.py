@@ -393,6 +393,7 @@ test=[0]*24
 @bot.command()
 async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
+    await bot.say(' '.join(test))
     h=plus_facile(list_terr2(int(i)-1,int(nb),int(i)-1,test,list_desactive.split(' ')))
     message=""
     for k in h:
