@@ -16,9 +16,9 @@ async def on_ready():
     print('------')
 
 @bot.command()
-async def hello():
+async def bonjour():
     """Says Hello World"""
-    await bot.say("Hellod")
+    await bot.say("Salut")
 
 def code_names_init():
     game=[]
