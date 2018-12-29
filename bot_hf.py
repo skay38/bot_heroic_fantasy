@@ -115,18 +115,18 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member, chan : 
             await bot.say("Tour Bleu")
         await bot.say("combien de cases ?")
         k=(await bot.wait_for_message(channel=chan))
-        while k.author == bot.nom:
+        while k.author == bot.user:
             k=(await bot.wait_for_message(channel=chan))
         nombre = int(k.content)
         for k in range(nombre):
             await bot.say("Quelle ligne ?")
             t=(await bot.wait_for_message(channel=chan))
-            while t.author == bot.nom:
+            while t.author == bot.user:
                 t=(await bot.wait_for_message(channel=chan))
             i = int(t.content)-1
             await bot.say("Quelle colonne ?")
             t=(await bot.wait_for_message(channel=chan))
-            while t.author == bot.nom:
+            while t.author == bot.user:
                 t=(await bot.wait_for_message(channel=chan))
             j = int(t.content)-1
             if grille[i][j]=='m':
