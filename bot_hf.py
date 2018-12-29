@@ -373,7 +373,7 @@ def list_terr2(lieu,i,lieu2,test_3,desactiver):
     l=[]
     for x in faire:
         copie=copy.deepcopy(test_3)
-        l.append(list_terr2(x,test_3[x],lieu2,copie))
+        l.append(list_terr2(x,test_3[x],lieu2,copie,desactiver))
     if faire != []:
         for i in range(0,24):
             m=l[0][i]
@@ -393,7 +393,6 @@ test=[0]*24
 @bot.command()
 async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
-    await bot.say(list_desactive)
     h=plus_facile(list_terr2(int(i)-1,int(nb),int(i)-1,test,list_desactive.split(' ')))
     message=""
     for k in h:
