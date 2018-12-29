@@ -15,7 +15,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-@bot.command()
+@bot.command(pass_context=True)
 async def hello():
     """Says Hello World"""
     await bot.say("Hellod")
