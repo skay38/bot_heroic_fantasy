@@ -425,7 +425,7 @@ async def productions(i,nb,list_desactive):
 
 # # # # # Events # # # # #
     
-@bot.event()
+@bot.event
 async def on_message(message) :
     if message.author == bot.user or message.content[0] == bot.command_prefix:
         return
