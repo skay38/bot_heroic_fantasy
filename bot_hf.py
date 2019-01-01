@@ -182,7 +182,7 @@ for i in range(0,56):
         mat2[i].append(False)
 
 
-nom=["viande","poisson","pain","fruit","legume","fromage","miel","lait","oeuf","epice","tonneau","bouteille_vin","bouteille_cidre","bijoux","poterie","vetement","bougie","livre","parfum","fourrure","teinture","potion","plante","cire","encre","perle","armure","arme","tunique","arc","arme de siege","navire de guerre","bois","bois precieux","peau","cuir","pierre","gemme","argile","fer","corde","fleur","foin","ble","farine","orge","lin","chanvre","chevre","vache","poule","chevaux","bateau","navire de fret","charrette","zeppelin"]
+nom=["viande","poisson","pain","fruit","legume","fromage","miel","lait","oeuf","epice","tonneau","bouteille_vin","bouteille_cidre","bijoux","poterie","vetement","bougie","livre","parfum","fourrure","teinture","potion","plante","cire","encre","perle","armure","arme","tunique","arc","arme_de_siege","navire de guerre","bois","bois_precieux","peau","cuir","pierre","gemme","argile","fer","corde","fleur","foin","ble","farine","orge","lin","chanvre","chevre","vache","poule","chevaux","bateau","navire_de_fret","charrette","zeppelin"]
 
 def cherche(char):
     for i in range(0,len(nom)):
@@ -196,12 +196,12 @@ mat[2][cherche("farine")] = 1
 mat[cherche("fromage")][cherche("chevre")] = 0.01
 mat[cherche("lait")][cherche("vache")] = 0.01
 mat[cherche("oeuf")][cherche("poule")] = 0.02
-mat[cherche("epice")][cherche("navire de fret")] = 0.005
+mat[cherche("epice")][cherche("navire_de_fret")] = 0.005
 mat[cherche("tonneau")][cherche("orge")] = 5
 mat[cherche("bouteille_vin")][cherche("fruit")] = 10
 mat[cherche("bouteille_cidre")][cherche("fruit")] = 10
 mat[cherche("bijoux")][cherche("gemme")] = 5
-mat[cherche("bijoux")][cherche("bois precieux")] = 5
+mat[cherche("bijoux")][cherche("bois_precieux")] = 5
 mat[cherche("poterie")][cherche("argile")] = 10
 mat[cherche("vetement")][cherche("lin")] = 5
 mat[cherche("vetement")][cherche("teinture")] = 1
@@ -217,10 +217,10 @@ mat[cherche("armure")][cherche("fer")] = 30
 mat[cherche("arme")][cherche("fer")] = 20
 mat[cherche("tunique")][cherche("cuir")] = 10
 mat[cherche("arc")][cherche("bois")] = 10
-mat[cherche("arme de siege")][cherche("bois")] = 100
-mat[cherche("arme de siege")][cherche("corde")] = 100
-mat[cherche("arme de siege")][cherche("fer")] = 100
-mat[cherche("arme de siege")][cherche("pierre")] = 100
+mat[cherche("arme_de_siege")][cherche("bois")] = 100
+mat[cherche("arme_de_siege")][cherche("corde")] = 100
+mat[cherche("arme_de_siege")][cherche("fer")] = 100
+mat[cherche("arme_de_siege")][cherche("pierre")] = 100
 mat[cherche("navire de guerre")][cherche("bois")] = 600
 mat[cherche("navire de guerre")][cherche("corde")] = 100
 mat[cherche("navire de guerre")][cherche("fer")] = 200
@@ -233,10 +233,10 @@ mat[cherche("poule")][cherche("legume")] = 50
 mat[cherche("chevaux")][cherche("foin")] = 300
 mat[cherche("bateau")][cherche("bois")] = 100
 mat[cherche("bateau")][cherche("corde")] = 100
-mat[cherche("navire de fret")][cherche("bois")] = 300
-mat[cherche("navire de fret")][cherche("corde")] = 100
-mat[cherche("navire de fret")][cherche("fer")] = 100
-mat[cherche("navire de fret")][cherche("cuir")] = 200
+mat[cherche("navire_de_fret")][cherche("bois")] = 300
+mat[cherche("navire_de_fret")][cherche("corde")] = 100
+mat[cherche("navire_de_fret")][cherche("fer")] = 100
+mat[cherche("navire_de_fret")][cherche("cuir")] = 200
 mat[cherche("charrette")][cherche("bois")] = 50
 mat[cherche("charrette")][cherche("corde")] = 10
 mat[cherche("charrette")][cherche("fer")] = 50
@@ -288,10 +288,10 @@ ajoute("armure",[4,15,17])
 ajoute("arme",[3,15,17])
 ajoute("tunique",[6,19,21])
 ajoute("arc",[6,18,23])
-ajoute("arme de siege",[15])
+ajoute("arme_de_siege",[15])
 ajoute("navire de guerre",[20])
 ajoute("bois",[24])
-ajoute("bois precieux",[10])
+ajoute("bois_precieux",[10])
 ajoute("peau",[18])
 ajoute("cuir",[24])
 ajoute("pierre",[7,13])
@@ -311,7 +311,7 @@ ajoute("vache",[1])
 ajoute("poule",[16])
 ajoute("chevaux",[2,17])
 ajoute("bateau",[12])
-ajoute("navire de fret",[8])
+ajoute("navire_de_fret",[8])
 ajoute("charrette",[4])
 ajoute("zeppelin",[5])
 
@@ -333,7 +333,7 @@ def liste(n):
 # orge,pierre,peau,lin,oeuf,perle : 1/2 partisans
 # fer,foin,argile,ble,legume,bois,cuir,fleur,fruit,viande,cordes,bougie,farine,pain,poterie,teinture,lait,fromage,vetement,parfum,epice,bouteille vin, bouteille cidre,poisson,fourrures,tonneaux,bijoux,encre: partisans
 # arc,tunique,gemme,arme,armure,poule,livre : 1/5 partisans
-# arme de siege,zeppelin,navire de fret,navire de guerre : 1/100
+# arme_de_siege,zeppelin,navire_de_fret,navire de guerre : 1/100
 # plante : 1/3
 # bateau : 1/20
 # orge,pierre,peau,lin,fer,foin,argile,ble,legume,bois,cuir,fleur,fruit,viande,cordes,bougie,farine,pain,poterie,arc,tunique,gemme,arme,armure 
