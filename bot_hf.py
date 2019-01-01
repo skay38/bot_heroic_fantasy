@@ -4,6 +4,7 @@ from discord.ext import commands
 import os
 import math
 import copy
+from discord.utils import get
 
 description = '''Bot Python'''
 bot = commands.Bot(command_prefix='?', description=description)
@@ -402,6 +403,12 @@ def plus_facile(test_3):
         if test_3[i] != 0:
             l.append((i+1,test_3[i]))
     return(l)
+    
+def analyse_piou(msg):
+    for i in range(len(msg)):
+        if msg[i:i+4].lower() == "piou":
+            return 1
+    return 0
 
 @bot.command()
 async def productions(i,nb,list_desactive):
@@ -416,7 +423,16 @@ async def productions(i,nb,list_desactive):
         message=message+str(b)+" productions sur le "+str(a)+"\n"
     await bot.say(message)
 
-
+# # # # # Events # # # # #
+    
+@bot.event()
+async def on_message(message) :
+    if message.author == bot.user or message.content[0] == bot.command_prefix:
+        return
+    else:
+        if analyse_piou(message.content) == 1:
+            emoji = get(bot.get_all_emojis(), name='crownchick')
+            await bot.add_reaction(message, emoji)
 
 bot.run(TOKEN)
         
