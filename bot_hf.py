@@ -130,22 +130,22 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member, chan : 
                 t=(await bot.wait_for_message(channel=chan))
             j = int(t.content)-1
             if grille[i][j]=='m':
-                game[i][j]='MORT'
+                game[i][j]='**MORT**'
                 await bot.say("La team a perdu !")
                 fin=1
                 break
             elif grille[i][j]=='r':
                 tot_r-=1
-                game[i][j]='RRRR'
+                game[i][j]='**RRRR**'
                 if tour==0:
                     break
             elif grille[i][j]=='b':
                 tot_b-=1
-                game[i][j]='BBBB'
+                game[i][j]='**BBBB**'
                 if tour==1:
                     break
             else:
-                game[i][j]='NNNN'
+                game[i][j]='**NNNN**'
                 break
             if tot_r==0:
                 fin=1
