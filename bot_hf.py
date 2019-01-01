@@ -406,7 +406,7 @@ def plus_facile(test_3):
     
 def analyse_piou(msg):
     for i in range(len(msg)-4):
-        if (i == 0 and msg[i:i+4].lower() == "piou") or (msg[i-1]==' ' and msg[i:i+4].lower=="piou" and i==len(msg)-5) or (msg[i-1]==' ' and msg[i:i+4].lower=="piou" and msg[i+5]==' '):
+        if (i == 0 and msg[i:i+4].lower() == "piou") or (i!=0 and msg[i-1]==' ' and msg[i:i+4].lower=="piou" and i==len(msg)-5) or (i!=0 and i!=len(msg)-5 and msg[i-1]==' ' and msg[i:i+4].lower=="piou" and msg[i+5]==' '):
             return 1
     return 0
 
