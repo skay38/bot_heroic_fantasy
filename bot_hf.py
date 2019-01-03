@@ -469,7 +469,7 @@ async def scores_top():
     scores="```\nPioumeter :\nPlace | Nom   |  Score\n\n"
     fichier = open("pioumeter.txt", "r")
     tableau=[line.rstrip('\n') for line in fichier]
-    tableau[0],tableau[1]=tableau[0].split(' '),tableau[1].split(' ')
+    tableau[0],tableau[1]=tableau[0].split('--||__||__||--'),tableau[1].split('--||__||__||--')
     indices=tri(tableau)
     for i in range(min(10,len(indices))):
         scores = scores + str(i+1) + ') ' + tableau[0][indices[i]] + '    ' + tableau[1][indices[i]] + '\n'
