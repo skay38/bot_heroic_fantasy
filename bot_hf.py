@@ -418,17 +418,20 @@ def write(chaine,fichier):
 
 def ajout_pioumeter(tot,author):
     fichier = open("pioumeter.txt", "r")
-    lines=fichier.readlines()
-    tableau = lines.split('\n')
+    tableau=[line.rstrip('\n') for line in fichier]
     tableau[0],tableau[1]=tableau[0].split(' '),tableau[1].split(' ')
-    if author not in tableau[0]:
-        tableau[0].append(author)
+    if str(author) not in tableau[0]:
+        tableau[0].append(str(author))
         tableau[1].append(str(tot))
+    else:
+        i=0
+        while tableau[0][i]!=str(author):
+            i+=1
+        tableau[1][i]=str(int(tableau[1][i])+tot)
     fichier.close()
     tableau[0]=' '.join(tableau[0])
     tableau[1]=' '.join(tableau[1])
     chaine='\n'.join(tableau)
-    print("blala")
     write(chaine,"pioumeter.txt")
 
 @bot.command()
@@ -448,8 +451,10 @@ async def productions(i,nb,list_desactive):
     
 @bot.event
 async def on_message(message) :
-    if message.author == bot.user or message.content[0] == bot.command_prefix:
+    if message.author == bot.user:
         return
+    elif message.content[0] == bot.command_prefix:
+        print("commande reçue de {0.author}: {0.content}".format(message))
     else:
         tot = analyse_piou(message.content)
         if tot > 0:
@@ -461,6 +466,7 @@ async def on_message(message) :
                 emoji = get(bot.get_all_emojis(), name='crownchick')
                 await bot.add_reaction(message, emoji)
             ajout_pioumeter(tot,message.author)
+    await bot.process_commands(message)
 
 bot.run(TOKEN)
         
