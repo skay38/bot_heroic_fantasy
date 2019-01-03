@@ -405,10 +405,11 @@ def plus_facile(test_3):
     return(l)
     
 def analyse_piou(msg):
+    tot=0
     for i in range(len(msg)):
         if msg[i:i+4].lower() == "piou":
-            return 1
-    return 0
+            tot+=1
+    return tot
 
 @bot.command()
 async def productions(i,nb,list_desactive):
@@ -431,6 +432,12 @@ async def on_message(message) :
         return
     else:
         if analyse_piou(message.content) == 1:
+            emoji = get(bot.get_all_emojis(), name='hatching_chick')
+            await bot.add_reaction(message, emoji)
+        elif analyse_piou(message.content) == 2:
+            emoji = get(bot.get_all_emojis(), name='hatched_chick')
+            await bot.add_reaction(message, emoji)
+        elif analyse_piou(message.content) >= 2:
             emoji = get(bot.get_all_emojis(), name='crownchick')
             await bot.add_reaction(message, emoji)
 
