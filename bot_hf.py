@@ -418,7 +418,8 @@ def write(chaine,fichier):
 
 def ajout_pioumeter(tot,author):
     fichier = open("pioumeter.txt", "r")
-    tableau = fichier.split('\n')
+    lines=fichier.readlines()
+    tableau = lines.split('\n')
     tableau[0],tableau[1]=tableau[0].split(' '),tableau[1].split(' ')
     if author not in tableau[0]:
         tableau[0].append(author)
