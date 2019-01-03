@@ -473,7 +473,7 @@ async def scores_top():
     indices=tri(tableau)
     print(indices)
     for i in range(min(10,len(indices))):
-        scores = scores + str(i+1) + ') ' + tableau[0][i] + '    ' + tableau[1][indices[i]] + '\n'
+        scores = scores + str(i+1) + ') ' + tableau[0][indices[i]] + '    ' + tableau[1][i] + '\n'
     scores=scores+"```"
     await bot.say(scores)
 
