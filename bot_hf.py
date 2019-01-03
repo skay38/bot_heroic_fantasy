@@ -411,6 +411,24 @@ def analyse_piou(msg):
             tot+=1
     return tot
 
+def write(chaine,fichier):
+    fichier = open(fichier, "w")
+    fichier.write(chaine)
+    fichier.close()
+
+def ajout_pioumeter(tot,author):
+    fichier = open("pioumeter.txt", "r")
+    tableau = fichier.split('\n')
+    tableau[0],tableau[1]=tableau[0].split(' '),tableau[1].split(' ')
+    if author not in tableau[0]:
+        tableau[0].append(author)
+        tableau[1].append(str(tot))
+    fichier.close()
+    tableau[0]=' '.join(tableau[0])
+    tableau[1]=' '.join(tableau[1])
+    chaine='\n'.join(tableau)
+    write(chaine,"pioumeter.txt")
+
 @bot.command()
 async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
@@ -431,13 +449,16 @@ async def on_message(message) :
     if message.author == bot.user or message.content[0] == bot.command_prefix:
         return
     else:
-        if analyse_piou(message.content) == 1:
-            await bot.add_reaction(message, "\U0001F423")
-        elif analyse_piou(message.content) == 2:
-            await bot.add_reaction(message, "\U0001F425")
-        elif analyse_piou(message.content) >= 2:
-            emoji = get(bot.get_all_emojis(), name='crownchick')
-            await bot.add_reaction(message, emoji)
+        tot = analyse_piou(message.content)
+        if tot > 0:
+            if tot == 1:
+                await bot.add_reaction(message, "\U0001F423")
+            elif tot == 2:
+                await bot.add_reaction(message, "\U0001F425")
+            elif tot >= 2:
+                emoji = get(bot.get_all_emojis(), name='crownchick')
+                await bot.add_reaction(message, emoji)
+            ajout_pioumeter(tot,message.author)
 
 bot.run(TOKEN)
         
