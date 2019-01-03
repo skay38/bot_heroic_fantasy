@@ -433,10 +433,10 @@ async def on_message(message) :
     else:
         if analyse_piou(message.content) == 1:
             emoji = get(bot.get_all_emojis(), name='hatching_chick')
-            await bot.add_reaction(message, emoji)
+            await bot.add_reaction(message, "hatching_chick")
         elif analyse_piou(message.content) == 2:
             emoji = get(bot.get_all_emojis(), name='hatched_chick')
-            await bot.add_reaction(message, emoji)
+            await bot.add_reaction(message, "hatched_chick")
         elif analyse_piou(message.content) >= 2:
             emoji = get(bot.get_all_emojis(), name='crownchick')
             await bot.add_reaction(message, emoji)
