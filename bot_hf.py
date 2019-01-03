@@ -452,7 +452,7 @@ def tri(tableau):
     indices=[i for i in range(len(tableau[1]))]
     i=0
     while i<len(tableau[1])-1:
-        if tableau[1][i]<tableau[1][i+1]:
+        if int(tableau[1][i])<int(tableau[1][i+1]):
             temp=tableau[1][i]
             tempi=indices[i]
             indices[i]=indices[i+1]
