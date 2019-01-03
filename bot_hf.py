@@ -428,6 +428,7 @@ def ajout_pioumeter(tot,author):
     tableau[0]=' '.join(tableau[0])
     tableau[1]=' '.join(tableau[1])
     chaine='\n'.join(tableau)
+    print("blala")
     write(chaine,"pioumeter.txt")
 
 @bot.command()
