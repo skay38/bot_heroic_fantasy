@@ -471,6 +471,7 @@ async def scores_top():
     tableau=[line.rstrip('\n') for line in fichier]
     tableau[0],tableau[1]=tableau[0].split('--||__||__||--'),tableau[1].split('--||__||__||--')
     indices=tri(tableau)
+    print(indices)
     for i in range(min(10,len(indices))):
         scores = scores + str(i+1) + ') ' + tableau[0][i] + '    ' + tableau[1][indices[i]] + '\n'
     scores=scores+"```"
