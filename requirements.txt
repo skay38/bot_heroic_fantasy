@@ -1,2 +1,4 @@
 git+https://github.com/Rapptz/discord.py
 pip
+
+git+https://github.com/matplotlib/matplotlib
