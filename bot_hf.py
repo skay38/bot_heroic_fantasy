@@ -183,7 +183,7 @@ for i in range(0,56):
         mat2[i].append(False)
 
 
-nom=["viande","poisson","pain","fruit","legume","fromage","miel","lait","oeuf","epice","tonneau","bouteille_vin","bouteille_cidre","bijoux","poterie","vetement","bougie","livre","parfum","fourrure","teinture","potion","plante","cire","encre","perle","armure","arme","tunique","arc","arme_de_siege","navire de guerre","bois","bois_precieux","peau","cuir","pierre","gemme","argile","fer","corde","fleur","foin","ble","farine","orge","lin","chanvre","chevre","vache","poule","chevaux","bateau","navire_de_fret","charrette","zeppelin"]
+nom=["viande","poisson","pain","fruit","legume","fromage","miel","lait","oeuf","epice","tonneau","bouteille_vin","bouteille_cidre","bijoux","poterie","vetement","bougie","livre","parfum","fourrure","teinture","potion","plante","cire","encre","perle","armure","arme","tunique","arc","arme_de_siege","navire_de_guerre","bois","bois_precieux","peau","cuir","pierre","gemme","argile","fer","corde","fleur","foin","ble","farine","orge","lin","chanvre","chevre","vache","poule","chevaux","bateau","navire_de_fret","charrette","zeppelin"]
 
 def cherche(char):
     for i in range(0,len(nom)):
@@ -222,10 +222,10 @@ mat[cherche("arme_de_siege")][cherche("bois")] = 100
 mat[cherche("arme_de_siege")][cherche("corde")] = 100
 mat[cherche("arme_de_siege")][cherche("fer")] = 100
 mat[cherche("arme_de_siege")][cherche("pierre")] = 100
-mat[cherche("navire de guerre")][cherche("bois")] = 600
-mat[cherche("navire de guerre")][cherche("corde")] = 100
-mat[cherche("navire de guerre")][cherche("fer")] = 200
-mat[cherche("navire de guerre")][cherche("cuir")] = 200
+mat[cherche("navire_de_guerre")][cherche("bois")] = 600
+mat[cherche("navire_de_guerre")][cherche("corde")] = 100
+mat[cherche("navire_de_guerre")][cherche("fer")] = 200
+mat[cherche("navire_de_guerre")][cherche("cuir")] = 200
 mat[cherche("corde")][cherche("chanvre")] = 1
 mat[cherche("farine")][cherche("ble")] = 1
 mat[cherche("chevre")][cherche("foin")] = 200
@@ -290,7 +290,7 @@ ajoute("arme",[3,15,17])
 ajoute("tunique",[6,19,21])
 ajoute("arc",[6,18,23])
 ajoute("arme_de_siege",[15])
-ajoute("navire de guerre",[20])
+ajoute("navire_de_guerre",[20])
 ajoute("bois",[24])
 ajoute("bois_precieux",[10])
 ajoute("peau",[18])
@@ -334,7 +334,7 @@ def liste(n):
 # orge,pierre,peau,lin,oeuf,perle : 1/2 partisans
 # fer,foin,argile,ble,legume,bois,cuir,fleur,fruit,viande,cordes,bougie,farine,pain,poterie,teinture,lait,fromage,vetement,parfum,epice,bouteille vin, bouteille cidre,poisson,fourrures,tonneaux,bijoux,encre: partisans
 # arc,tunique,gemme,arme,armure,poule,livre : 1/5 partisans
-# arme_de_siege,zeppelin,navire_de_fret,navire de guerre : 1/100
+# arme_de_siege,zeppelin,navire_de_fret,navire_de_guerre : 1/100
 # plante : 1/3
 # bateau : 1/20
 # orge,pierre,peau,lin,fer,foin,argile,ble,legume,bois,cuir,fleur,fruit,viande,cordes,bougie,farine,pain,poterie,arc,tunique,gemme,arme,armure 
@@ -358,7 +358,7 @@ def liste_terr(lieu,li):
                 l = liste_terr(where[0],li+l) + l
     return(l)
 
-coef=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.2,1,1,1,1,0.33,0.5,1,0.5,0.2,0.2,0.2,0.2,0.01,0.01,1,0.5,0.5,1,0.5,0.2,1,1,1,1,1,1,1,0.5,0.5,1,0.1,0.1,0.2,0.1,0.05,0.1,0.05,0.01]
+coef=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.2,1,1,1,1,0.33,0.5,1,0.5,0.2,0.2,0.2,0.2,0.01,0.01,1,0.5,0.5,1,0.5,0.2,1,1,1,1,1,1,1,0.5,0.5,1,0.1,0.1,0.2,0.1,0.05,0.01,0.05,0.01]
 coef[33]=0.33
 
 def desactive(list_desactive):
