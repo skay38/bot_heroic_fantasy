@@ -442,7 +442,7 @@ def analyse_etre(msg):
         k=1
         for i in range(len(mess)-len("je suis")):
             if mess[i:i+len("je suis")]=="je suis":
-                retour=mess[i+len("je suis")::]
+                retour="Bonjour "+mess[i+len("je suis")::]+", moi c'est le bot HF"
     else:
         k=0
     return(k,retour)
@@ -511,7 +511,7 @@ async def on_message(message) :
             ajout_pioumeter(tot,message.author)
         etre,msg=analyse_etre(message.content)
         if etre==1:
-            bot.say(msg)
+            await bot.send_message(message.channel,msg)
     await bot.process_commands(message)
 
 bot.run(TOKEN)
