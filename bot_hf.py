@@ -435,6 +435,18 @@ def ajout_pioumeter(tot,author):
     chaine='\n'.join(tableau)
     write(chaine,"pioumeter.txt")
 
+def analyse_etre(msg):
+    retour=""
+    mess=msg.lower()
+    if "je suis" in mess:
+        k=1
+        for i in range(len(mess)-len("je suis")):
+            if mess[i:i+len("je suis")]=="je suis":
+                retour=mess[i+len("je suis")::]
+    else:
+        k=0
+    return(k,retour)
+
 @bot.command()
 async def productions(i,nb,list_desactive):
     """Allow to know the best number of productions"""
@@ -497,6 +509,9 @@ async def on_message(message) :
                 emoji = get(bot.get_all_emojis(), name='crownchick')
                 await bot.add_reaction(message, emoji)
             ajout_pioumeter(tot,message.author)
+        etre,msg=analyse_etre(message.content)
+        if etre==1:
+            bot.say(msg)
     await bot.process_commands(message)
 
 bot.run(TOKEN)
