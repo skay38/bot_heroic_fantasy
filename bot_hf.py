@@ -438,12 +438,16 @@ def ajout_pioumeter(tot,author):
 def analyse_etre(msg):
     retour=""
     mess=msg.lower()
-    if "je suis" in mess:
+    if "je suis " in mess:
         k=1
-        for i in range(len(mess)-len("je suis")):
-            if mess[i:i+len("je suis")]=="je suis":
-                retour="Bonjour "+mess[i+len("je suis")::]+", moi c'est le bot HF"
-    else:
+        for i in range(len(mess)-len("je suis ")):
+            if mess[i:i+len("je suis ")]=="je suis ":
+                h=mess[i+len("je suis ")::]
+                if len(h)>0:
+                    while(h[0]==' ' and len(h)>0):
+                        h=h[1::]
+                retour="Bonjour "+h+", moi c'est le bot HF"
+    if len(retour)==0:
         k=0
     return(k,retour)
 
