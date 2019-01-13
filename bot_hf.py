@@ -441,7 +441,7 @@ def analyse_etre(msg):
     if "je suis " in mess:
         k=1
         for i in range(len(mess)-len("je suis ")):
-            if msg[i:i+len("je suis ")]=="je suis ":
+            if mess[i:i+len("je suis ")]=="je suis ":
                 h=msg[i+len("je suis ")::]
                 if len(h)>0:
                     while(h[0]==' ' and len(h)>0):
