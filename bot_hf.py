@@ -1,10 +1,13 @@
 from random import randint
+from random import random
 import discord
 from discord.ext import commands
 import os
 import math
 import copy
 from discord.utils import get
+
+POURCENT_REACTION=0.10
 
 description = '''Bot Python'''
 bot = commands.Bot(command_prefix='?', description=description)
@@ -516,6 +519,18 @@ async def on_message(message) :
         etre,msg=analyse_etre(message.content)
         if etre==1:
             await bot.send_message(message.channel,msg)
+        else:
+            alea=random()
+            if (alea<POURCENT_REACTION):
+                alea2=random()
+                if alea2<0.25:
+                    await bot.send_message(message.channel,"J'approuve !")
+                elif alea2<0.5:
+                    await bot.send_message(message.channel,"Tout à fait !")
+                elif alea2<0.75:
+                    await bot.send_message(message.channel,"Exactement !")
+                else:
+                    await bot.send_message(message.channel,"En êtes-vous seulement sûrs ?")
     await bot.process_commands(message)
 
 bot.run(TOKEN)
