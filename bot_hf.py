@@ -188,16 +188,16 @@ async def code_names(espion1 : discord.Member, espion2 : discord.Member, chan : 
 
 # # # # IV)Productions # # # #
 
-mat = []
-mat2 = []
+mat_prod = []
+mat_prod2 = []
 
 for i in range(0,56):
-    mat.append([])
-    mat2.append([])
+    mat_prod.append([])
+    mat_prod2.append([])
     for j in range(0,56):
-        mat[i].append(0)
+        mat_prod[i].append(0)
     for k in range(0,24):
-        mat2[i].append(False)
+        mat_prod2[i].append(False)
 
 
 nom=["viande","poisson","pain","fruit","legume","fromage","miel","lait","oeuf","epice","tonneau","bouteille_vin","bouteille_cidre","bijoux","poterie","vetement","bougie","livre","parfum","fourrure","teinture","potion","plante","cire","encre","perle","armure","arme","tunique","arc","arme_de_siege","navire_de_guerre","bois","bois_precieux","peau","cuir","pierre","gemme","argile","fer","corde","fleur","foin","ble","farine","orge","lin","chanvre","chevre","vache","poule","chevaux","bateau","navire_de_fret","charrette","zeppelin"]
@@ -209,79 +209,79 @@ def cherche(char):
     return(len(nom)+1)
 
 
-mat[1][cherche("bateau")] = 0.01
-mat[2][cherche("farine")] = 1
-mat[cherche("fromage")][cherche("chevre")] = 0.01
-mat[cherche("lait")][cherche("vache")] = 0.01
-mat[cherche("oeuf")][cherche("poule")] = 0.02
-mat[cherche("epice")][cherche("navire_de_fret")] = 0.005
-mat[cherche("tonneau")][cherche("orge")] = 5
-mat[cherche("bouteille_vin")][cherche("fruit")] = 10
-mat[cherche("bouteille_cidre")][cherche("fruit")] = 10
-mat[cherche("bijoux")][cherche("gemme")] = 5
-mat[cherche("bijoux")][cherche("bois_precieux")] = 5
-mat[cherche("poterie")][cherche("argile")] = 10
-mat[cherche("vetement")][cherche("lin")] = 5
-mat[cherche("vetement")][cherche("teinture")] = 1
-mat[cherche("bougie")][cherche("cire")] = 3
-mat[cherche("livre")][cherche("cuir")] = 5
-mat[cherche("livre")][cherche("encre")] = 1
-mat[cherche("parfum")][cherche("fleur")] = 10
-mat[cherche("fourrure")][cherche("peau")] = 5
-mat[cherche("teinture")][cherche("fleur")] = 5
-mat[cherche("potion")][cherche("plante")] = 5
-mat[cherche("encre")][cherche("perle")] = 5
-mat[cherche("armure")][cherche("fer")] = 30
-mat[cherche("arme")][cherche("fer")] = 20
-mat[cherche("tunique")][cherche("cuir")] = 10
-mat[cherche("arc")][cherche("bois")] = 10
-mat[cherche("arme_de_siege")][cherche("bois")] = 100
-mat[cherche("arme_de_siege")][cherche("corde")] = 100
-mat[cherche("arme_de_siege")][cherche("fer")] = 100
-mat[cherche("arme_de_siege")][cherche("pierre")] = 100
-mat[cherche("navire_de_guerre")][cherche("bois")] = 600
-mat[cherche("navire_de_guerre")][cherche("corde")] = 100
-mat[cherche("navire_de_guerre")][cherche("fer")] = 200
-mat[cherche("navire_de_guerre")][cherche("cuir")] = 200
-mat[cherche("corde")][cherche("chanvre")] = 1
-mat[cherche("farine")][cherche("ble")] = 1
-mat[cherche("chevre")][cherche("foin")] = 200
-mat[cherche("vache")][cherche("foin")] = 200
-mat[cherche("poule")][cherche("legume")] = 50
-mat[cherche("chevaux")][cherche("foin")] = 300
-mat[cherche("bateau")][cherche("bois")] = 100
-mat[cherche("bateau")][cherche("corde")] = 100
-mat[cherche("navire_de_fret")][cherche("bois")] = 300
-mat[cherche("navire_de_fret")][cherche("corde")] = 100
-mat[cherche("navire_de_fret")][cherche("fer")] = 100
-mat[cherche("navire_de_fret")][cherche("cuir")] = 200
-mat[cherche("charrette")][cherche("bois")] = 50
-mat[cherche("charrette")][cherche("corde")] = 10
-mat[cherche("charrette")][cherche("fer")] = 50
-mat[cherche("charrette")][cherche("chevaux")] = 1
-mat[cherche("zeppelin")][cherche("bois")] = 100
-mat[cherche("zeppelin")][cherche("corde")] = 400
-mat[cherche("zeppelin")][cherche("fer")] = 100
-mat[cherche("zeppelin")][cherche("cuir")] = 600
+mat_prod[1][cherche("bateau")] = 0.01
+mat_prod[2][cherche("farine")] = 1
+mat_prod[cherche("fromage")][cherche("chevre")] = 0.01
+mat_prod[cherche("lait")][cherche("vache")] = 0.01
+mat_prod[cherche("oeuf")][cherche("poule")] = 0.02
+mat_prod[cherche("epice")][cherche("navire_de_fret")] = 0.005
+mat_prod[cherche("tonneau")][cherche("orge")] = 5
+mat_prod[cherche("bouteille_vin")][cherche("fruit")] = 10
+mat_prod[cherche("bouteille_cidre")][cherche("fruit")] = 10
+mat_prod[cherche("bijoux")][cherche("gemme")] = 5
+mat_prod[cherche("bijoux")][cherche("bois_precieux")] = 5
+mat_prod[cherche("poterie")][cherche("argile")] = 10
+mat_prod[cherche("vetement")][cherche("lin")] = 5
+mat_prod[cherche("vetement")][cherche("teinture")] = 1
+mat_prod[cherche("bougie")][cherche("cire")] = 3
+mat_prod[cherche("livre")][cherche("cuir")] = 5
+mat_prod[cherche("livre")][cherche("encre")] = 1
+mat_prod[cherche("parfum")][cherche("fleur")] = 10
+mat_prod[cherche("fourrure")][cherche("peau")] = 5
+mat_prod[cherche("teinture")][cherche("fleur")] = 5
+mat_prod[cherche("potion")][cherche("plante")] = 5
+mat_prod[cherche("encre")][cherche("perle")] = 5
+mat_prod[cherche("armure")][cherche("fer")] = 30
+mat_prod[cherche("arme")][cherche("fer")] = 20
+mat_prod[cherche("tunique")][cherche("cuir")] = 10
+mat_prod[cherche("arc")][cherche("bois")] = 10
+mat_prod[cherche("arme_de_siege")][cherche("bois")] = 100
+mat_prod[cherche("arme_de_siege")][cherche("corde")] = 100
+mat_prod[cherche("arme_de_siege")][cherche("fer")] = 100
+mat_prod[cherche("arme_de_siege")][cherche("pierre")] = 100
+mat_prod[cherche("navire_de_guerre")][cherche("bois")] = 600
+mat_prod[cherche("navire_de_guerre")][cherche("corde")] = 100
+mat_prod[cherche("navire_de_guerre")][cherche("fer")] = 200
+mat_prod[cherche("navire_de_guerre")][cherche("cuir")] = 200
+mat_prod[cherche("corde")][cherche("chanvre")] = 1
+mat_prod[cherche("farine")][cherche("ble")] = 1
+mat_prod[cherche("chevre")][cherche("foin")] = 200
+mat_prod[cherche("vache")][cherche("foin")] = 200
+mat_prod[cherche("poule")][cherche("legume")] = 50
+mat_prod[cherche("chevaux")][cherche("foin")] = 300
+mat_prod[cherche("bateau")][cherche("bois")] = 100
+mat_prod[cherche("bateau")][cherche("corde")] = 100
+mat_prod[cherche("navire_de_fret")][cherche("bois")] = 300
+mat_prod[cherche("navire_de_fret")][cherche("corde")] = 100
+mat_prod[cherche("navire_de_fret")][cherche("fer")] = 100
+mat_prod[cherche("navire_de_fret")][cherche("cuir")] = 200
+mat_prod[cherche("charrette")][cherche("bois")] = 50
+mat_prod[cherche("charrette")][cherche("corde")] = 10
+mat_prod[cherche("charrette")][cherche("fer")] = 50
+mat_prod[cherche("charrette")][cherche("chevaux")] = 1
+mat_prod[cherche("zeppelin")][cherche("bois")] = 100
+mat_prod[cherche("zeppelin")][cherche("corde")] = 400
+mat_prod[cherche("zeppelin")][cherche("fer")] = 100
+mat_prod[cherche("zeppelin")][cherche("cuir")] = 600
 
 def quoi(ressource):
-    liste=mat[cherche(ressource)]
+    liste=mat_prod[cherche(ressource)]
     liste_i=[]
     for i in range(0,56):
         if liste[i] != 0:
             liste_i.append((i,liste[i]))
     return(liste_i)
 
-mat2[cherche("viande")][22] = True
-mat2[cherche("poisson")][19] = True
-mat2[cherche("pain")][3] = True
-mat2[cherche("fruit")][22] = True
-mat2[cherche("legume")][10] = True
-mat2[cherche("fromage")][0] = True
-mat2[cherche("miel")][9] = True
+mat_prod2[cherche("viande")][22] = True
+mat_prod2[cherche("poisson")][19] = True
+mat_prod2[cherche("pain")][3] = True
+mat_prod2[cherche("fruit")][22] = True
+mat_prod2[cherche("legume")][10] = True
+mat_prod2[cherche("fromage")][0] = True
+mat_prod2[cherche("miel")][9] = True
 def ajoute(char,l):
     for i in range(0,len(l)):
-        mat2[cherche(char)][l[i]-1] = True
+        mat_prod2[cherche(char)][l[i]-1] = True
 
 ajoute("lait",[7])
 ajoute("oeuf",[22])
@@ -336,14 +336,14 @@ ajoute("zeppelin",[5])
 def ou(char):
     l=[]
     for i in range(0,24):
-        if mat2[cherche(char)][i] == True:
+        if mat_prod2[cherche(char)][i] == True:
             l.append(i)
     return(l)
     
 def liste(n):
     l1=[]
-    for i in range(0,len(mat2)):
-        if mat2[i][n] == True :
+    for i in range(0,len(mat_prod2)):
+        if mat_prod2[i][n] == True :
             l1.append(i)
     return(l1)
 
@@ -397,10 +397,10 @@ def list_terr2(lieu,i,lieu2,test_3):
                 if (where[0] != 0 or test_3[0] == 0) and (where[0] != 6 or test_3[6] == 0)and where[0] != lieu2:
                     if appartient(faire,where[0]) == False:
                         faire.append(where[0])
-                        test_3[where[0]] += i*coef[x]*mat[x][a]/coef[a]
+                        test_3[where[0]] += i*coef[x]*mat_prod[x][a]/coef[a]
                     else:
-                        test_3[where[0]] = max(i*coef[x]*mat[x][a]/coef[a],test_3[where[0]],1)    
-                    test_3[where[0]] = math.ceil(test_3[where[0]])
+                        test_3[where[0]] = max(i*coef[x]*mat_prod[x][a]/coef[a],test_3[where[0]],1)    
+                    test_3[where[0]] = mat_prodh.ceil(test_3[where[0]])
             else:
                 break
     l=[]
