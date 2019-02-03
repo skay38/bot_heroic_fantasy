@@ -400,7 +400,7 @@ def list_terr2(lieu,i,lieu2,test_3):
                         test_3[where[0]] += i*coef[x]*mat_prod[x][a]/coef[a]
                     else:
                         test_3[where[0]] = max(i*coef[x]*mat_prod[x][a]/coef[a],test_3[where[0]],1)    
-                    test_3[where[0]] = mat_prod.ceil(test_3[where[0]])
+                    test_3[where[0]] = math.ceil(test_3[where[0]])
             else:
                 break
     l=[]
