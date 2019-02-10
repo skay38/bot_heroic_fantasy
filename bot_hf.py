@@ -275,7 +275,7 @@ def quoi(ressource):
 
 mat_prod2[cherche("viande")][22] = True
 mat_prod2[cherche("poisson")][19] = True
-mat_prod2[cherche("pain")][3] = True
+mat_prod2[cherche("pain")][4] = True
 mat_prod2[cherche("fruit")][22] = True
 mat_prod2[cherche("legume")][10] = True
 mat_prod2[cherche("fromage")][0] = True
