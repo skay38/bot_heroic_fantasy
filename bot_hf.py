@@ -602,7 +602,7 @@ async def played(ctx,player):
         day_temp.append(DAY.pop())
     while(len(day_temp)>0):
         k=day_temp.pop()
-        if "<@"+str(k.id)+">"!=player:
+        if k!=ctx.get_user(player):
             DAY.append(k)
 
 @bot.command()
@@ -639,7 +639,9 @@ async def on_message(message) :
             elif tot == 2:
                 await message.add_reaction("\U0001F425")
             elif tot >= 2:
-                emoji = get(bot.emojis(), name='crownchick')
+                for k in bot.emojis:
+                    if k.name=='crownchick':
+                        emoji=k
                 await message.add_reaction(emoji)
             ajout_pioumeter(tot,message.author)
         etre,msg=analyse_etre(message.content)
