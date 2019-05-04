@@ -123,8 +123,8 @@ async def code_names(ctx,espio1, espio2):
         tab_attente.append(' - '.join(x))
     affichage_grille='\n'.join(tab_attente)
     await ctx.send(affichage)
-    await ctx.send_message(espion1,'Voici la grille à faire deviner :\n'+affichage_grille)
-    await ctx.send_message(espion2,'Voici la grille à faire deviner :\n'+affichage_grille)
+    await espion1.send('Voici la grille à faire deviner :\n'+affichage_grille)
+    await espion2.send('Voici la grille à faire deviner :\n'+affichage_grille)
     if a=='r':
         tot_r=9
         tot_b=8
