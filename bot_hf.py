@@ -106,8 +106,10 @@ def afficher(game):
 
 #corps du jeu
 @bot.command()
-async def code_names(ctx,espion1 : discord.user, espion2 : discord.user):
+async def code_names(ctx,espio1, espio2):
     """Allow to play to Code Names"""
+    espion1=bot.get_user(espio1[3:-1])
+    espion2=bot.get_user(espio2[3:-1])
     chan=ctx.channel
     game=code_names_init()
     a,grille=grille_jeu_init()
