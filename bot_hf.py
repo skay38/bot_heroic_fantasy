@@ -608,7 +608,9 @@ async def played(ctx,player):
         day_temp.append(DAY.pop())
     while(len(day_temp)>0):
         k=day_temp.pop()
-        if k!=bot.get_user(player):
+        if "<@!"+str(k.id)+">"!=player:
+            print(k.id)
+            print('\n'+player)
             DAY.append(k)
 
 @bot.command()
