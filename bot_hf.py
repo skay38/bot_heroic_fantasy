@@ -588,6 +588,12 @@ async def dettes(ctx):
             phrase=phrase+str(tab[0][i])+" : "+str(tab[1][i])+'\n'
     await ctx.send(phrase)
 
+@bot.command()
+async def reinit(ctx):
+    while(len(DAY)>0):
+        k=DAY.pop()
+    while(len(DETTES)>0):
+        k=DETTES.pop()
 
 @bot.command()
 async def played(ctx,player):
@@ -602,7 +608,7 @@ async def played(ctx,player):
         day_temp.append(DAY.pop())
     while(len(day_temp)>0):
         k=day_temp.pop()
-        if k!=ctx.get_user(player):
+        if k!=bot.get_user(player):
             DAY.append(k)
 
 @bot.command()
