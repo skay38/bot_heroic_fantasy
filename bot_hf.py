@@ -106,7 +106,7 @@ def afficher(game):
 
 #corps du jeu
 @bot.command()
-async def code_names(espion1 : discord.member, espion2 : discord.member, chan : discord.channel):
+async def code_names(ctx,espion1 : discord.member, espion2 : discord.member, chan : discord.channel):
     """Allow to play to Code Names"""
     game=code_names_init()
     a,grille=grille_jeu_init()
@@ -119,9 +119,9 @@ async def code_names(espion1 : discord.member, espion2 : discord.member, chan : 
     for x in grille:
         tab_attente.append(' - '.join(x))
     affichage_grille='\n'.join(tab_attente)
-    await bot.say(affichage)
-    await bot.send_message(espion1,'Voici la grille à faire deviner :\n'+affichage_grille)
-    await bot.send_message(espion2,'Voici la grille à faire deviner :\n'+affichage_grille)
+    await ctx.say(affichage)
+    await ctx.send_message(espion1,'Voici la grille à faire deviner :\n'+affichage_grille)
+    await ctx.send_message(espion2,'Voici la grille à faire deviner :\n'+affichage_grille)
     if a=='r':
         tot_r=9
         tot_b=8
@@ -132,28 +132,28 @@ async def code_names(espion1 : discord.member, espion2 : discord.member, chan : 
         tour=0
     while(fin!=1):
         if tour ==1:
-            await bot.say("Tour Rouge")
+            await ctx.say("Tour Rouge")
         else:
-            await bot.say("Tour Bleu")
-        await bot.say("combien de cases ?")
-        k=(await bot.wait_for_message(channel=chan))
-        while k.author == bot.user:
-            k=(await bot.wait_for_message(channel=chan))
+            await ctx.say("Tour Bleu")
+        await ctx.say("combien de cases ?")
+        k=(await ctx.wait_for_message(channel=chan))
+        while k.author == ctx.user:
+            k=(await ctx.wait_for_message(channel=chan))
         nombre = int(k.content)
         for k in range(nombre):
-            await bot.say("Quelle ligne ?")
-            t=(await bot.wait_for_message(channel=chan))
-            while t.author == bot.user:
-                t=(await bot.wait_for_message(channel=chan))
+            await ctx.say("Quelle ligne ?")
+            t=(await ctx.wait_for_message(channel=chan))
+            while t.author == ctx.user:
+                t=(await ctx.wait_for_message(channel=chan))
             i = int(t.content)-1
-            await bot.say("Quelle colonne ?")
-            t=(await bot.wait_for_message(channel=chan))
-            while t.author == bot.user:
-                t=(await bot.wait_for_message(channel=chan))
+            await ctx.say("Quelle colonne ?")
+            t=(await ctx.wait_for_message(channel=chan))
+            while t.author == ctx.user:
+                t=(await ctx.wait_for_message(channel=chan))
             j = int(t.content)-1
             if grille[i][j]=='m':
                 game[i][j]='**MORT**'
-                await bot.say("La team a perdu !")
+                await ctx.say("La team a perdu !")
                 fin=1
                 break
             elif grille[i][j]=='r':
@@ -171,24 +171,24 @@ async def code_names(espion1 : discord.member, espion2 : discord.member, chan : 
                 break
             if tot_r==0:
                 fin=1
-                await bot.say("Les rouges ont gagné !")
+                await ctx.say("Les rouges ont gagné !")
                 break
             elif tot_b==0:
                 fin=1
-                await bot.say("Les bleus ont gagné !")
+                await ctx.say("Les bleus ont gagné !")
                 break
             tab_attente=[]
             if k != nombre - 1 :
                 for x in game:
                     tab_attente.append(' - '.join(x))
                 affichage='\n'.join(tab_attente)
-                await bot.say(affichage)
+                await ctx.say(affichage)
         tour=(tour+1)%2
         tab_attente=[]
         for x in game:
             tab_attente.append(' - '.join(x))
         affichage='\n'.join(tab_attente)
-        await bot.say(affichage)
+        await ctx.say(affichage)
 
 # # # # IV)Productions # # # #
 
@@ -430,7 +430,7 @@ def plus_facile(test_3):
     return(l)
 
 @bot.command()
-async def productions(i,nb,list_desactive):
+async def productions(ctx,i,nb,list_desactive):
     """Allow to know the best number of productions"""
     global test
     test=[0]*24
@@ -440,7 +440,7 @@ async def productions(i,nb,list_desactive):
     for k in h:
         a,b=k
         message=message+str(b)+" productions sur le "+str(a)+"\n"
-    await bot.say(message)
+    await ctx.say(message)
 
 
 # # # # V) Discussion + pioumeter # # # #
@@ -518,7 +518,7 @@ def tri(tableau):
 
 #permet de renvoyer sur discord les meilleurs scores
 @bot.command()
-async def scores_top():
+async def scores_top(ctx):
     scores="```\nPioumeter :\nPlace | Nom   |  Score\n\n"
     fichier = open("pioumeter.txt", "r")
     tableau=[line.rstrip('\n') for line in fichier]
@@ -528,12 +528,12 @@ async def scores_top():
     for i in range(min(10,len(indices))):
         scores = scores + str(i+1) + ') ' + tableau[0][indices[i]] + '    ' + tableau[1][i] + '\n'
     scores=scores+"```"
-    await bot.say(scores)
+    await ctx.say(scores)
 
 
 # # # # VI) True Game # # # #
 @bot.command()
-async def init_day():
+async def init_day(ctx):
     test=0
     for k in message_author.roles:
         if str(k)=="Le Démon" or str(k)=="Princesse Disney":
@@ -548,6 +548,7 @@ async def init_day():
         for l in k.roles:
             if str(l)=="groupe"+str(1+PLAY_GROUP):
                 DAY.append(k)
+    await ctx.say("Bien initialisé !")
 
 def arrange_mult_tab(tableau):
     tab=[[],[]]
@@ -562,7 +563,7 @@ def arrange_mult_tab(tableau):
     return tab
 
 @bot.command()
-async def tour():
+async def tour(ctx):
     if str(message_channel)!="le-sanctuaire-des-vérités":
         return
     if len(DAY)==0:
@@ -572,10 +573,10 @@ async def tour():
         tab=arrange_mult_tab(DAY)
         for i in range(len(tab[0])):
             phrase=phrase+str(tab[0][i])+" : "+str(tab[1][i])+'\n'
-    await bot.say(phrase)
+    await ctx.say(phrase)
 
 @bot.command()
-async def dettes():
+async def dettes(ctx):
     if str(message_channel)!="le-sanctuaire-des-vérités":
         return
     if len(DETTES)==0:
@@ -585,11 +586,11 @@ async def dettes():
         tab=arrange_mult_tab(DETTES)
         for i in range(len(tab[0])):
             phrase=phrase+str(tab[0][i])+" : "+str(tab[1][i])+'\n'
-    await bot.say(phrase)
+    await ctx.say(phrase)
 
 
 @bot.command()
-async def played(player):
+async def played(ctx,player):
     test=0
     for k in message_author.roles:
         if str(k)=="Le Démon" or str(k)=="Princesse Disney":
@@ -605,7 +606,7 @@ async def played(player):
             DAY.append(k)
 
 @bot.command()
-async def end_day():
+async def end_day(ctx):
     test=0
     for k in message_author.roles:
         if str(k)=="Le Démon" or str(k)=="Princesse Disney":
