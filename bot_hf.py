@@ -108,6 +108,7 @@ def afficher(game):
 @bot.command()
 async def code_names(ctx,espio1, espio2):
     """Allow to play to Code Names"""
+    print(espio1[3:-1])
     espion1=bot.get_user(espio1[3:-1])
     espion2=bot.get_user(espio2[3:-1])
     chan=ctx.channel
