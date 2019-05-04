@@ -665,21 +665,21 @@ async def on_message(message) :
             alea=random()
             if (alea<POURCENT_SALUTATION):
                 alea2=randint(0,len(PHRASES_SALUTATIONS)-1)
-                await bot.send_message(message.channel,PHRASES_SALUTATIONS[alea2])
+                await message.channel.send(PHRASES_SALUTATIONS[alea2])
         elif etre==1:
-            await bot.send_message(message.channel,msg)  
+            await message.channel.send(msg)  
         else:
             for x in bot.get_all_channels():
                 if x.name=="taverne":
                     h=x
             if message.channel==h:
                 alea2=randint(0,len(PHRASES_BOT)-1)
-                await bot.send_message(message.channel,PHRASES_BOT[alea2])
+                await message.channel.send(PHRASES_BOT[alea2])
             else:
                 alea=random()
                 if (alea<POURCENT_REACTION):
                     alea2=randint(0,len(PHRASES_BOT)-1)
-                    await bot.send_message(message.channel,PHRASES_BOT[alea2])
+                    await message.channel.send(PHRASES_BOT[alea2])
     await bot.process_commands(message)
 
 bot.run(TOKEN)
