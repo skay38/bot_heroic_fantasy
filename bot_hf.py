@@ -106,8 +106,9 @@ def afficher(game):
 
 #corps du jeu
 @bot.command()
-async def code_names(ctx,espion1 : discord.member, espion2 : discord.member, chan : discord.channel):
+async def code_names(ctx,espion1 : discord.user, espion2 : discord.user):
     """Allow to play to Code Names"""
+    chan=ctx.channel
     game=code_names_init()
     a,grille=grille_jeu_init()
     fin=0
@@ -536,7 +537,7 @@ async def scores_top(ctx):
 async def init_day(ctx):
     test=0
     for k in message_author.roles:
-        if str(k)=="Le Démon" or str(k)=="Princesse Disney":
+        if str(k)=="Le Démon" or str(k)=="Princesse Disney" or str(k)=="Modo des Vérités":
             test=1
     if str(message_channel)!="le-sanctuaire-des-vérités" or test==0:
         return
@@ -590,6 +591,12 @@ async def dettes(ctx):
 
 @bot.command()
 async def reinit(ctx):
+    test=0
+    for k in message_author.roles:
+        if str(k)=="Le Démon" or str(k)=="Princesse Disney" or str(k)=="Modo des Vérités":
+            test=1
+    if str(message_channel)!="le-sanctuaire-des-vérités" or test==0:
+        return
     while(len(DAY)>0):
         k=DAY.pop()
     while(len(DETTES)>0):
@@ -599,7 +606,7 @@ async def reinit(ctx):
 async def played(ctx,player):
     test=0
     for k in message_author.roles:
-        if str(k)=="Le Démon" or str(k)=="Princesse Disney":
+        if str(k)=="Le Démon" or str(k)=="Princesse Disney" or str(k)=="Modo des Vérités":
             test=1
     if str(message_channel)!="le-sanctuaire-des-vérités" or test==0:
         return
@@ -609,15 +616,13 @@ async def played(ctx,player):
     while(len(day_temp)>0):
         k=day_temp.pop()
         if "<@!"+str(k.id)+">"!=player:
-            print(k.id)
-            print('\n'+player)
             DAY.append(k)
 
 @bot.command()
 async def end_day(ctx):
     test=0
     for k in message_author.roles:
-        if str(k)=="Le Démon" or str(k)=="Princesse Disney":
+        if str(k)=="Le Démon" or str(k)=="Princesse Disney" or str(k)=="Modo des Vérités":
             test=1
     if str(message_channel)!="le-sanctuaire-des-vérités" or test==0:
         return
