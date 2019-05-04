@@ -635,12 +635,12 @@ async def on_message(message) :
         tot = analyse_piou(message.content)
         if tot > 0:
             if tot == 1:
-                message.add_reaction("\U0001F423")
+                await message.add_reaction("\U0001F423")
             elif tot == 2:
-                message.add_reaction("\U0001F425")
+                await message.add_reaction("\U0001F425")
             elif tot >= 2:
                 emoji = get(bot.get_all_emojis(), name='crownchick')
-                message.add_reaction(emoji)
+                await message.add_reaction(emoji)
             ajout_pioumeter(tot,message.author)
         etre,msg=analyse_etre(message.content)
         salutation=analyse_salutation(message.content)
