@@ -119,7 +119,7 @@ async def code_names(ctx,espion1 : discord.member, espion2 : discord.member, cha
     for x in grille:
         tab_attente.append(' - '.join(x))
     affichage_grille='\n'.join(tab_attente)
-    await ctx.say(affichage)
+    await ctx.send(affichage)
     await ctx.send_message(espion1,'Voici la grille à faire deviner :\n'+affichage_grille)
     await ctx.send_message(espion2,'Voici la grille à faire deviner :\n'+affichage_grille)
     if a=='r':
@@ -132,28 +132,28 @@ async def code_names(ctx,espion1 : discord.member, espion2 : discord.member, cha
         tour=0
     while(fin!=1):
         if tour ==1:
-            await ctx.say("Tour Rouge")
+            await ctx.send("Tour Rouge")
         else:
-            await ctx.say("Tour Bleu")
-        await ctx.say("combien de cases ?")
+            await ctx.send("Tour Bleu")
+        await ctx.send("combien de cases ?")
         k=(await ctx.wait_for_message(channel=chan))
         while k.author == ctx.user:
             k=(await ctx.wait_for_message(channel=chan))
         nombre = int(k.content)
         for k in range(nombre):
-            await ctx.say("Quelle ligne ?")
+            await ctx.send("Quelle ligne ?")
             t=(await ctx.wait_for_message(channel=chan))
             while t.author == ctx.user:
                 t=(await ctx.wait_for_message(channel=chan))
             i = int(t.content)-1
-            await ctx.say("Quelle colonne ?")
+            await ctx.send("Quelle colonne ?")
             t=(await ctx.wait_for_message(channel=chan))
             while t.author == ctx.user:
                 t=(await ctx.wait_for_message(channel=chan))
             j = int(t.content)-1
             if grille[i][j]=='m':
                 game[i][j]='**MORT**'
-                await ctx.say("La team a perdu !")
+                await ctx.send("La team a perdu !")
                 fin=1
                 break
             elif grille[i][j]=='r':
@@ -171,24 +171,24 @@ async def code_names(ctx,espion1 : discord.member, espion2 : discord.member, cha
                 break
             if tot_r==0:
                 fin=1
-                await ctx.say("Les rouges ont gagné !")
+                await ctx.send("Les rouges ont gagné !")
                 break
             elif tot_b==0:
                 fin=1
-                await ctx.say("Les bleus ont gagné !")
+                await ctx.send("Les bleus ont gagné !")
                 break
             tab_attente=[]
             if k != nombre - 1 :
                 for x in game:
                     tab_attente.append(' - '.join(x))
                 affichage='\n'.join(tab_attente)
-                await ctx.say(affichage)
+                await ctx.send(affichage)
         tour=(tour+1)%2
         tab_attente=[]
         for x in game:
             tab_attente.append(' - '.join(x))
         affichage='\n'.join(tab_attente)
-        await ctx.say(affichage)
+        await ctx.send(affichage)
 
 # # # # IV)Productions # # # #
 
@@ -440,7 +440,7 @@ async def productions(ctx,i,nb,list_desactive):
     for k in h:
         a,b=k
         message=message+str(b)+" productions sur le "+str(a)+"\n"
-    await ctx.say(message)
+    await ctx.send(message)
 
 
 # # # # V) Discussion + pioumeter # # # #
@@ -528,7 +528,7 @@ async def scores_top(ctx):
     for i in range(min(10,len(indices))):
         scores = scores + str(i+1) + ') ' + tableau[0][indices[i]] + '    ' + tableau[1][i] + '\n'
     scores=scores+"```"
-    await ctx.say(scores)
+    await ctx.send(scores)
 
 
 # # # # VI) True Game # # # #
@@ -548,7 +548,7 @@ async def init_day(ctx):
         for l in k.roles:
             if str(l)=="groupe"+str(1+PLAY_GROUP):
                 DAY.append(k)
-    await ctx.say("Bien initialisé !")
+    await ctx.send("Bien initialisé !")
 
 def arrange_mult_tab(tableau):
     tab=[[],[]]
@@ -573,7 +573,7 @@ async def tour(ctx):
         tab=arrange_mult_tab(DAY)
         for i in range(len(tab[0])):
             phrase=phrase+str(tab[0][i])+" : "+str(tab[1][i])+'\n'
-    await ctx.say(phrase)
+    await ctx.send(phrase)
 
 @bot.command()
 async def dettes(ctx):
@@ -586,7 +586,7 @@ async def dettes(ctx):
         tab=arrange_mult_tab(DETTES)
         for i in range(len(tab[0])):
             phrase=phrase+str(tab[0][i])+" : "+str(tab[1][i])+'\n'
-    await ctx.say(phrase)
+    await ctx.send(phrase)
 
 
 @bot.command()
