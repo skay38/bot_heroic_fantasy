@@ -1,2 +1,2 @@
-git+https://github.com/DiscordBotList/DBL-Python-Library
+git+https://github.com/Rapptz/discord.py
 pip

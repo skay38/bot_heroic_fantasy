@@ -625,7 +625,7 @@ async def on_message(message) :
     global serveur_co
     message_author=message.author
     message_channel=message.channel
-    serveur_co=message_channel.server
+    serveur_co=message_author.guild
     if message.author == bot.user:
         return
     elif message.content[0] == bot.command_prefix:
