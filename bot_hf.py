@@ -544,7 +544,7 @@ def init_all():
     tab=fich2.read().split('\n')
     if len(tab)>1 or tab[0]!='':
         for i in range(len(tab)):
-            DETTES.append(k)
+            DETTES.append(tab[i])
     fich1.close()
     fich2.close()
 
