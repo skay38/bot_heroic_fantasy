@@ -541,8 +541,10 @@ def init_all():
     fich1=open("group.txt",'r')
     fich2=open("dettes.txt",'r')
     PLAY_GROUP=int(fich1.read()[0])
-    for k in fich2.read().split('\n'):
-        DETTES.append(k)
+    tab=fich2.read().split('\n')
+    if len(tab)>1:
+        for i in range(len(tab)-1):
+            DETTES.append(k)
     fich1.close()
     fich2.close()
 
@@ -668,7 +670,7 @@ async def send_all(ctx):
             test=1
     if test==0:
         return
-    await message_author.send(file="message.txt")
+    await message_author.send(file="messages.txt")
     await message_channel.send("done !")
 
 @bot.command()
@@ -680,7 +682,7 @@ async def send_x(ctx,n):
             test=1
     if test==0:
         return
-    fich=open("message.txt","r")
+    fich=open("messages.txt","r")
     tab=fich.read().split('\n')
     for i in range(n):
         msg=msg+tab[i]+'\n'
