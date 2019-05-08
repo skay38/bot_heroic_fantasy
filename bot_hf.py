@@ -649,6 +649,8 @@ async def end_day(ctx):
     texte=""
     while(len(DETTES)>0):
         k=DETTES.pop()
+        print(k)
+        print(str(k))
         texte=texte+str(k)+'\n'
     fich.write(texte)
     fich.close()
@@ -673,7 +675,7 @@ async def send_all(ctx):
             test=1
     if test==0:
         return
-    await message_author.send(file='messages.txt')
+    await message_author.send(file=open('messages.txt','rb'))
     await message_channel.send("done !")
 
 @bot.command()
@@ -687,7 +689,7 @@ async def send_x(ctx,n):
         return
     fich=open("messages.txt","r")
     tab=fich.read().split('\n')
-    for i in range(n):
+    for i in range(int(n)):
         msg=msg+tab[i]+'\n'
     await message_author.send(msg)
     await message_channel.send("done !")
