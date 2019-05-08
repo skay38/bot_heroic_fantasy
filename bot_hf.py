@@ -542,8 +542,8 @@ def init_all():
     fich2=open("dettes.txt",'r')
     PLAY_GROUP=int(fich1.read()[0])
     tab=fich2.read().split('\n')
-    if len(tab)>1:
-        for i in range(len(tab)-1):
+    if len(tab)>1 or tab[0]!='':
+        for i in range(len(tab)):
             DETTES.append(k)
     fich1.close()
     fich2.close()
@@ -557,8 +557,6 @@ async def init_day(ctx):
             test=1
     if str(message_channel)!="le-sanctuaire-des-vérités" or test==0:
         return
-    global PLAY_GROUP
-    PLAY_GROUP=1-PLAY_GROUP
     while len(DETTES)>0:
         DAY.append(DETTES.pop())
     for k in serveur_co.members:
@@ -651,7 +649,7 @@ async def end_day(ctx):
     texte=""
     while(len(DETTES)>0):
         k=DETTES.pop()
-        texte=texte+k+'\n'
+        texte=texte+str(k)+'\n'
     fich.write(texte)
     fich.close()
     fich=open("group.txt",'w')
