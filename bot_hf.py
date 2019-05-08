@@ -544,7 +544,10 @@ def init_all():
     tab=fich2.read().split('\n')
     if len(tab)>1 or tab[0]!='':
         for i in range(len(tab)):
-            DETTES.append(tab[i])
+            for k in serveur_co.members:
+                if str(k)==tab[i]:
+                    DETTES.append(k)
+                    break
     fich1.close()
     fich2.close()
 
@@ -675,7 +678,7 @@ async def send_all(ctx):
             test=1
     if test==0:
         return
-    await message_author.send(file=open('messages.txt','rb'))
+    await message_author.send(file=discord.File(filename='messages.txt'))
     await message_channel.send("done !")
 
 @bot.command()
