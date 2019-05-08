@@ -693,7 +693,7 @@ async def send_x(ctx,n):
     fich=open("messages.txt","r")
     tab=fich.read().split('\n')
     for i in range(int(n)):
-        msg=msg+tab[i]+'\n'
+        msg=msg+tab[len(tab)-1-i]+'\n'
     await message_author.send(msg)
     await message_channel.send("done !")
 
