@@ -667,7 +667,7 @@ async def end_day(ctx):
 
 def save_message(message):
     fich=open("messages.txt",'a')
-    fich.write(str(message_author)+" à "+str(message.created_at)+" : "+message.content+'\n')
+    fich.write(str(message_channel)+' : '+str(message_author)+" à "+str(message.created_at)+" : "+message.content+'\n')
     fich.close()
 
 @bot.command()
