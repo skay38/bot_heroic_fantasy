@@ -535,8 +535,20 @@ async def scores_top(ctx):
 
 
 # # # # VI) True Game # # # #
+
+def init_all():
+    global PLAY_GROUP
+    fich1=open("group.txt",'r')
+    fich2=open("dettes.txt",'r')
+    PLAY_GROUP=int(fich1.read()[0])
+    for k in fich2.read().split('\n'):
+        DETTES.append(k)
+    fich1.close()
+    fich2.close()
+
 @bot.command()
 async def init_day(ctx):
+    init_all()
     test=0
     for k in message_author.roles:
         if str(k)=="Le Démon" or str(k)=="Princesse Disney" or str(k)=="Modo des Vérités":
@@ -603,6 +615,8 @@ async def reinit(ctx):
         k=DAY.pop()
     while(len(DETTES)>0):
         k=DETTES.pop()
+    fich=open("day.txt",'w')
+    fich.write('\n')
 
 @bot.command()
 async def played(ctx,player):
@@ -630,10 +644,50 @@ async def end_day(ctx):
         return
     while len(DAY)>0:
         DETTES.append(DAY.pop())
+    fich=open("dettes.txt",'w')
+    texte=""
+    for k in DETTES:
+        texte=texte+k+'\n'
+    fich.write(texte)
+    fich.close()
+        
 
 
 # # # # VII) Events # # # #
-    
+
+def save_message(message):
+    fich=open("messages.txt",'a')
+    fich.write(str(message_author)+" à "+str(message.created_at)+" : "+message.content+'\n')
+    fich.close()
+
+@bot.command()
+async def send_all(ctx):
+    test=0
+    for k in message_author.roles:
+        if str(k)=="Le Démon":
+            test=1
+    if test==0:
+        return
+    await message_author.send(file="message.txt")
+    await message_channel.send("done !")
+
+@bot.command()
+async def send_x(ctx,n):
+    test=0
+    msg=""
+    for k in message_author.roles:
+        if str(k)=="Le Démon":
+            test=1
+    if test==0:
+        return
+    fich=open("message.txt","r")
+    tab=fich.read().split('\n')
+    for i in range(n):
+        msg=msg+tab[i]+'\n'
+    await message_author.send(msg)
+    await message_channel.send("done !")
+
+
 @bot.event
 async def on_message(message) :
     global message_author
@@ -647,6 +701,7 @@ async def on_message(message) :
     elif message.content[0] == bot.command_prefix:
         print("commande reçue de {0.author}: {0.content}".format(message))
     else:
+        save_message(message)
         tot = analyse_piou(message.content)
         if tot > 0:
             if tot == 1:
