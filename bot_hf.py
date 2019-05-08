@@ -679,7 +679,6 @@ async def send_all(ctx):
     if test==0:
         return
     await message_author.send(file=discord.File(open("messages.txt",'rb')))
-    await message_channel.send("done !")
 
 @bot.command()
 async def send_x(ctx,n):
@@ -692,10 +691,10 @@ async def send_x(ctx,n):
         return
     fich=open("messages.txt","r")
     tab=fich.read().split('\n')
-    for i in range(int(n)):
-        msg=msg+tab[len(tab)-1-i]+'\n'
+    tab2=tab[len(tab)-int(n)-1::]
+    for k in tab2:
+        msg=msg+k+'\n'
     await message_author.send(msg)
-    await message_channel.send("done !")
 
 
 @bot.event
