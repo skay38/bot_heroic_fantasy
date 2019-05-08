@@ -678,7 +678,7 @@ async def send_all(ctx):
             test=1
     if test==0:
         return
-    await message_author.send("messages.txt",file=discord.File(filename='messages.txt'))
+    await message_author.send(discord.File(open("messages.txt",'rb')))
     await message_channel.send("done !")
 
 @bot.command()
