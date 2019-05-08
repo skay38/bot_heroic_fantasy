@@ -638,6 +638,7 @@ async def played(ctx,player):
 
 @bot.command()
 async def end_day(ctx):
+    global PLAY_GROUP
     test=0
     for k in message_author.roles:
         if str(k)=="Le Démon" or str(k)=="Princesse Disney" or str(k)=="Modo des Vérités":
@@ -648,9 +649,13 @@ async def end_day(ctx):
         DETTES.append(DAY.pop())
     fich=open("dettes.txt",'w')
     texte=""
-    for k in DETTES:
+    while(len(DETTES)>0):
+        k=DETTES.pop()
         texte=texte+k+'\n'
     fich.write(texte)
+    fich.close()
+    fich=open("group.txt",'w')
+    fich.write(str(1-PLAY_GROUP))
     fich.close()
         
 
@@ -670,7 +675,7 @@ async def send_all(ctx):
             test=1
     if test==0:
         return
-    await message_author.send(file="messages.txt")
+    await message_author.send(file='messages.txt')
     await message_channel.send("done !")
 
 @bot.command()
