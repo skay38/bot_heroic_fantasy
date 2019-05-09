@@ -634,9 +634,7 @@ async def played(ctx,player):
         day_temp.append(DAY.pop())
     while(len(day_temp)>0):
         k=day_temp.pop()
-        print(k)
-        print(player)
-        if "<@!"+str(k.id)+">"!=player:
+        if "<@!"+str(k.id)+">"!=player and "<@"+str(k.id)+">"!=player:
             DAY.append(k)
 
 @bot.command()
@@ -654,8 +652,6 @@ async def end_day(ctx):
     texte=""
     while(len(DETTES)>0):
         k=DETTES.pop()
-        print(k)
-        print(str(k))
         texte=texte+str(k)+'\n'
     fich.write(texte)
     fich.close()
