@@ -634,6 +634,8 @@ async def played(ctx,player):
         day_temp.append(DAY.pop())
     while(len(day_temp)>0):
         k=day_temp.pop()
+        print(k)
+        print(player)
         if "<@!"+str(k.id)+">"!=player:
             DAY.append(k)
 
