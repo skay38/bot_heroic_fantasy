@@ -678,15 +678,16 @@ def news_developpez():
 
 def news_check_post():
     if time.time()>time_prev+time_wait:
+        tab=[]
         print("Check en cours ...")
         news_developpez()
         while(len(tab_post)>0):
             k=tab_post.pop()
             chaine=k.title
             chaine=chaine+'\n\n'+k.description
-            for chan in bot.get_all_channels():
-                if str(chan)=="news_info":
-                    await chan.send(chaine)
+            tab.append(chaine)
+    return(chaine)
+            
 
 # # # # VIII) Events # # # #
 
@@ -769,7 +770,12 @@ async def on_message(message) :
                 if (alea<POURCENT_REACTION):
                     alea2=randint(0,len(PHRASES_BOT)-1)
                     await message.channel.send(PHRASES_BOT[alea2])
-        news_check_post()
+        tab_news=news_check_post()
+        while(len(tab_news)>0):
+            k=tab_news.pop()
+            for chan in bot.get_all_channels():
+                if str(chan)=="news_info":
+                    await chan.send(k)
     await bot.process_commands(message)
 
 bot.run(TOKEN)
