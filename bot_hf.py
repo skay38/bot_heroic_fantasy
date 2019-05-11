@@ -688,7 +688,7 @@ def news_check_post():
             chaine=k.title
             chaine=chaine+'\n\n'+k.description
             tab.append(chaine)
-    return(chaine)
+    return(tab)
             
 
 # # # # VIII) Events # # # #
