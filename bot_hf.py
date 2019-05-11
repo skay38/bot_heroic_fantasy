@@ -6,6 +6,9 @@ import os
 import math
 import copy
 from discord.utils import get
+import feedparser
+import time
+
 
 #Sommaire:
 #I) Description bot
@@ -14,7 +17,8 @@ from discord.utils import get
 #IV) Module Productions HF
 #V) bot discussion + pioumeter
 #VI) True Game
-#VII) Partie Event
+#VII) News
+#VIII) Partie Event
 
 # # # # I) Description bot # # # #
 description = '''Bot Python'''
@@ -39,6 +43,10 @@ TOKEN = os.environ['TOKEN']
 PLAY_GROUP=0
 DAY=[]
 DETTES=[]
+time_wait=10
+time_prev=time.now()
+tab_current=[]
+tab_post=[]
 
 # # # # III) Code names # # # #
 
@@ -658,10 +666,29 @@ async def end_day(ctx):
     fich=open("group.txt",'w')
     fich.write(str(1-PLAY_GROUP))
     fich.close()
-        
 
+# # # # VII) News # # # #
 
-# # # # VII) Events # # # #
+def news_developpez():
+    d = feedparser.parse('https://www.developpez.com/index/rss')
+    for i in d.entries:
+        if i not in tab_current:
+            tab_current.pop().insert(0,i)
+            tab_post.append(i)
+
+def news_check_post():
+    if time.time()>time_prev+time_wait:
+        print("Check en cours ...")
+        news_developpez()
+        while(len(tab_post)>0):
+            k=tab_post.pop()
+            chaine=k.title
+            chaine=chaine+'\n\n'+k.description
+            for chan in bot.get_all_channels():
+                if str(chan)=="news_info":
+                    await chan.send(chaine)
+
+# # # # VIII) Events # # # #
 
 def save_message(message):
     fich=open("messages.txt",'a')
@@ -742,6 +769,7 @@ async def on_message(message) :
                 if (alea<POURCENT_REACTION):
                     alea2=randint(0,len(PHRASES_BOT)-1)
                     await message.channel.send(PHRASES_BOT[alea2])
+        news_check_post()
     await bot.process_commands(message)
 
 bot.run(TOKEN)
