@@ -673,8 +673,10 @@ def news_developpez():
     d = feedparser.parse('https://www.developpez.com/index/rss')
     for i in d.entries:
         if i not in tab_current:
-            tab_current.pop().insert(0,i)
+            tab_current.insert(0,i)
             tab_post.append(i)
+    while(len(tab_current)>10):
+        tab_current.pop()
 
 def news_check_post():
     if time.time()>time_prev+time_wait:
