@@ -44,7 +44,7 @@ PLAY_GROUP=0
 DAY=[]
 DETTES=[]
 time_wait=10
-time_prev=time.now()
+time_prev=time.time()
 tab_current=[]
 tab_post=[]
 
