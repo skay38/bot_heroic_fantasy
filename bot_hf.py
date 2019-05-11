@@ -772,7 +772,7 @@ async def on_message(message) :
                 if (alea<POURCENT_REACTION):
                     alea2=randint(0,len(PHRASES_BOT)-1)
                     await message.channel.send(PHRASES_BOT[alea2])
-        tab_news=news_check_post()
+#        tab_news=news_check_post()
         while(len(tab_news)>0):
             k=tab_news.pop()
             for chan in bot.get_all_channels():
