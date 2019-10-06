@@ -56,6 +56,16 @@ class player:
         self.needed_xp = 10
         self.last_message_time = 0
         
+def level_up ():
+    message_time= time.time
+    if (message_time-player.last_message_time >= 30):
+        player.last_message_time = message_time
+        player.needed_xp = player.needed_xp - 1
+        if (player.needed_xp == 0):
+            player.lvl=player.lvl+1
+            player.needed_xp = 10+ (player.lvl * 5)
+    
+        
 
 # # # # III) Code names # # # #
 
