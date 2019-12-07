@@ -789,6 +789,8 @@ async def on_message(message) :
                 await message.channel.send(PHRASES_SALUTATIONS[alea2])
         elif etre==1:
             await message.channel.send(msg)  
+        elif anniv == 1:
+            await message.channel.send("Merci beaucoup %s !!" % str(message.author))
         else:
             for x in bot.get_all_channels():
                 if x.name=="taverne":
@@ -801,8 +803,6 @@ async def on_message(message) :
                 if (alea<POURCENT_REACTION):
                     alea2=randint(0,len(PHRASES_BOT)-1)
                     await message.channel.send(PHRASES_BOT[alea2])
-        if anniv == 1:
-            await message.channel.send("Merci beaucoup %s !!" % str(message.author))
 #        tab_news=news_check_post()
 #        while(len(tab_news)>0):
 #            k=tab_news.pop()
