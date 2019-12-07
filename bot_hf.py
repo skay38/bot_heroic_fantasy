@@ -783,14 +783,17 @@ async def on_message(message) :
         salutation=analyse_salutation(message.content)
         anniv = analyse_anniv(message.content)
         if salutation==1:
-            alea=random()
-            if (alea<POURCENT_SALUTATION):
-                alea2=randint(0,len(PHRASES_SALUTATIONS)-1)
-                await message.channel.send(PHRASES_SALUTATIONS[alea2])
-        elif etre==1:
-            await message.channel.send(msg)  
+            if anniv == 1:
+                await message.channel.send("Salut à toi et merci beaucoup %s !!" % str(message.author))
+            else:
+                alea=random()
+                if (alea<POURCENT_SALUTATION):
+                    alea2=randint(0,len(PHRASES_SALUTATIONS)-1)
+                    await message.channel.send(PHRASES_SALUTATIONS[alea2])
         elif anniv == 1:
             await message.channel.send("Merci beaucoup %s !!" % str(message.author))
+        elif etre==1:
+            await message.channel.send(msg)  
         else:
             for x in bot.get_all_channels():
                 if x.name=="taverne":
